@@ -87,7 +87,7 @@ const Cart = ({ cart, onRemove }) => {
 
 
 
-const Home = () => {
+const Exprrt2 = () => {
   const [cart, setCart] = useState([]);
 
   const addToCart = (service) => {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 20,
-    backgroundColor: '#f0f0f0',
+    //backgroundColor: '#f0f0f0',
   },
   backButton: {
     marginRight: 10,
@@ -145,6 +145,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     fontWeight: 'bold',
+    textAlign:'center'
   },
   servicesContainer: {
     flex: 1,
@@ -152,13 +153,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    marginVertical:-5
   },
   serviceCard: {
-    height:'27%',
-    width: '46%',
+    height:200,
+    width: '48%',
     padding: 15,
     marginBottom: 15,
-    marginTop:20,
+    
     marginLeft:3,
      backgroundColor: '#fff',
     borderRadius: 20,
@@ -190,8 +192,8 @@ const styles = StyleSheet.create({
     textAlign:'center'
   },
   cartContainer: {
-    padding: 20,
-    backgroundColor: '#f0f0f0',
+    // padding: 20,
+   //ssss backgroundColor: '#f0f0f0',
   },
   cartHeading: {
     fontSize: 20,
@@ -229,4 +231,4 @@ const styles = StyleSheet.create({
  
 });
 
-export default Home;
+export default Exprrt2;

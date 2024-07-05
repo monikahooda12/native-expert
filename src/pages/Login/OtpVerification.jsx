@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     },
     timer: {
         fontSize: 16,
-        color: '#000000',
+         color: '#000000',
         textAlign: 'center',
         marginTop: -15,
         fontStyle: "Arial",
@@ -105,17 +105,19 @@ const styles = StyleSheet.create({
     otpInputContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginTop: 20,
+         marginTop: 20,
     },
     otpTextView: {
-        width: '80%', // Adjust width as per your design
-        marginRight: 50
+        width: '50%', // Adjust width as per your design
+        marginRight: 50,
+        
+
     },
     otpInput: {
         width: "26%",
         height: "100%",
         borderWidth: 1,
-        borderColor: '#ccc',
+         borderColor: '#ccc',
         borderRadius: 8,
         paddingHorizontal: 10,
         fontSize: 20,

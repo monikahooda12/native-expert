@@ -12,17 +12,28 @@ import StackNavigation from './src/Routing/StackRoute';
 import CoverImage from './src/pages/content/coverImage';
 import HomeScreen from './src/Slider/HomeScreen';
 import { StackActions } from '@react-navigation/native';
-import Home from './src/home/Home';
-import Exprrt from './src/home/exprrt';
+
+
+import Exprrt2 from './src/home/exprrt2';
+
+import Exprrtmain from './src/home/exprrt';
+import Home from './src/home/home1';
+import OnBoarding from './src/home/onboarding';
+import Services from './src/home/frame1';
+import Profile from './src/home/Profile';
 
 // import OnboardingScreens from './src/Slider/OnBoarding';
 
 const App = () => {
   return (
-<Exprrt/>
-    // <HomeScreen/>
+      <StackNavigation/>
+// <Profile/>
+    //<Exprrt/> 
+//<OnBoarding/>
+//<Services/>
+   //  <HomeScreen/>
+   // <Exprrt2/>
   //  <OnboardingScreens/>
-      //  <StackNavigation/>
     // <CoverImage />
    //  <HomeScreen/>
     // <View style={{ flex: 1 }}>

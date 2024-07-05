@@ -2,8 +2,8 @@ import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import Home from '../home/Home';
-import Exprrt from '../home/exprrt';
+import Home from '../home/exprrt2';
+import Exprrt from '../home/home1';
 import Profile from '../home/Profile';
 import HomeIcon from 'react-native-vector-icons/Entypo'
 import Ionicons from 'react-native-vector-icons/Ionicons'

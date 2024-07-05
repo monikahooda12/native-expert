@@ -1,54 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, ScrollView, FlatList } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList, TextInput, ScrollView } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const services = [
   {
-    icon: require('../assets/Images/Welcome.png'),
+    id: 1,
+    icon: require('../assets/Images/homecart1.png'),
     title: 'Web Design',
     categories: 12,
   },
   {
-    icon: require('../assets/Images/welcome2.png'),
+    id: 2,
+    icon: require('../assets/Images/homecart2.png'),
     title: 'App Dev',
     categories: 9,
   },
   {
+    id: 3,
     icon: require('../assets/Images/welcome3.png'),
     title: 'Web Design',
     categories: 8,
   },
   {
+    id: 4,
     icon: require('../assets/Images/Welcome.png'),
     title: 'Graphic Design',
     categories: 16,
   },
   {
+    id: 5,
     icon: require('../assets/Images/Welcome.png'),
     title: 'Hacker',
     categories: 22,
   },
   {
+    id: 6,
     icon: require('../assets/Images/Welcome.png'),
     title: 'Data Analyst',
     categories: 12,
   },
 ];
-
-const SearchBar = ({ onSearch, value }) => {
-  return (
-    <View style={styles.searchContainer}>
-      <FontAwesomeIcon icon={faSearch} size={20} color="#888" style={styles.searchIcon} />
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search here..."
-        value={value}
-        onChangeText={onSearch}
-      />
-    </View>
-  );
-};
 
 const CartItem = ({ service, onRemove }) => {
   const handleRemove = () => {
@@ -60,9 +52,7 @@ const CartItem = ({ service, onRemove }) => {
       <Image source={service.icon} style={styles.cartIcon} />
       <View>
         <Text style={styles.cartTitle}>{service.title}</Text>
-        <Text style={styles.cartCategories}>
-          {service.categories} Categories
-        </Text>
+        <Text style={styles.cartCategories}>{service.categories} Categories</Text>
       </View>
       <TouchableOpacity onPress={handleRemove}>
         <FontAwesomeIcon icon={faTrash} size={20} color="red" />
@@ -83,10 +73,10 @@ const Cart = ({ cart, onRemove }) => {
       {hasItems ? (
         <FlatList
           data={cart}
-          keyExtractor={(item) => item.title}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <CartItem
-              key={item.title}
+              key={item.id}
               service={item}
               onRemove={() => onRemove(item)}
             />
@@ -97,9 +87,9 @@ const Cart = ({ cart, onRemove }) => {
   );
 };
 
-const Exprrtmain = () => {
+const Home = () => {
   const [cart, setCart] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
   const [filteredServices, setFilteredServices] = useState(services);
 
   const addToCart = (service) => {
@@ -107,11 +97,11 @@ const Exprrtmain = () => {
   };
 
   const removeFromCart = (service) => {
-    setCart(cart.filter((item) => item.title !== service.title));
+    setCart(cart.filter((item) => item.id !== service.id));
   };
 
   const handleSearch = (text) => {
-    setSearchValue(text);
+    setSearchTerm(text);
     const filtered = services.filter((service) =>
       service.title.toLowerCase().includes(text.toLowerCase())
     );
@@ -119,33 +109,49 @@ const Exprrtmain = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity style={styles.backButton}>
           <FontAwesomeIcon icon={faArrowLeft} size={20} color="black" />
         </TouchableOpacity>
-        <Text style={styles.headerText}>Here Are Our IT Services</Text>
+        <Text style={styles.headerText}>Home</Text>
       </View>
       <View style={styles.searchContainer}>
-        <SearchBar onSearch={handleSearch} value={searchValue} />
+        <FontAwesomeIcon icon={faSearch} size={20} color="#888" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search here..."
+          value={searchTerm}
+          onChangeText={handleSearch}
+        />
       </View>
-      <View style={styles.servicesContainer}>
-        {filteredServices.map((service) => (
-          <TouchableOpacity
-            key={service.title}
-            style={styles.serviceCard}
-            onPress={() => addToCart(service)}
-          >
-            <Image source={service.icon} style={styles.serviceIcon} />
-            <Text style={styles.serviceTitle}>{service.title}</Text>
-            <Text style={styles.serviceCategories}>
-              {service.categories} Categories
-            </Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      
+      <ScrollView>
+        <View>
+          <Image source={require('../assets/Images/home.png')} style={styles.rectangleImage}/>
+        </View>
+
+        <View>
+          <Text style={styles.Title}>Hello</Text>
+          <Text style={styles.Categories}>Categories</Text>
+        </View>
+        
+        <View style={styles.servicesContainer}>
+          {filteredServices.map((service) => (
+            <TouchableOpacity
+              key={service.id}
+              style={styles.serviceCard}
+              onPress={() => addToCart(service)}
+            >
+              <Image source={service.icon} style={styles.serviceIcon} />
+              <Text style={styles.serviceTitle}>{service.title}</Text>
+              <Text style={styles.serviceCategories}>{service.categories} Categories</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </ScrollView>
       <Cart cart={cart} onRemove={removeFromCart} />
-    </ScrollView>
+    </View>
   );
 };
 
@@ -153,15 +159,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    padding:5,
-    
+     paddingHorizontal: 20, // consistent horizontal margin
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    textAlign:'center',
     padding: 20,
-    backgroundColor: '#f0f0f0',
-    textAlign:'center'
+    // backgroundColor: '#f0f0f0',
   },
   backButton: {
     marginRight: 10,
@@ -169,39 +174,49 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'center',
+    alignItems: 'center',
   },
   searchContainer: {
-    padding: 7,
-    
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 8,
+    marginVertical: 20,
+    borderWidth: 1,
+    borderColor: '#f0f0f0',
+    borderRadius: 50,
+    backgroundColor: '#fff',
+    height:'8%',
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   searchIcon: {
-    marginRight: 10,
-    marginleft:10,
-    top:30,
-    left:320
-    
+    marginRight: 8,
   },
   searchInput: {
     flex: 1,
-    borderWidth: 1,
-    padding: 7,
-    borderRadius: 28,
-    borderColor: '#ccc',
+    fontSize: 14,
+  },
+  rectangleImage: {
+    width: '100%',
+    height: 150,
+    borderRadius: 20,
+    marginVertical: 7, // consistent vertical margin
   },
   servicesContainer: {
-    flex: 1,
-    padding: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
   serviceCard: {
-    height: 200,
-    width: '48%',
-    padding: 15,
+    width: '46%',
+    height: 200, // Adjust the height to fit your design
     marginBottom: 15,
     backgroundColor: '#fff',
-    borderRadius: 20,
+    borderRadius: 10,
+    overflow: 'hidden', // Ensure content doesn't overflow the card
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -212,22 +227,34 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   serviceIcon: {
-    width: 80,
-    height: 80,
-    alignSelf: 'center',
-    marginBottom: 10,
+    width: '100%',
+    height: '100%',
   },
   serviceTitle: {
+    position: 'absolute',
+    bottom: 20,
+    left: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+    zIndex: 1,
+  },
+  serviceCategories: {
+    position: 'absolute',
+    bottom: 5,
+    left: 10,
+    fontSize: 14,
+    color: '#fff',
+    zIndex: 1,
+  },
+  Title: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: '#000000',
-    textAlign: 'center'
   },
-  serviceCategories: {
+  Categories: {
     fontSize: 14,
     color: '#888',
-    textAlign: 'center'
   },
   cartContainer: {
     padding: 20,
@@ -250,12 +277,16 @@ const styles = StyleSheet.create({
   cartTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    textAlign: 'center',
   },
   cartCategories: {
     fontSize: 14,
     color: '#888',
   },
+  cartHeading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
 });
 
-export default Exprrtmain;
+export default Home;

@@ -9,6 +9,8 @@ import HomeScreen from '../Slider/HomeScreen';
 import OnboardingScreen from '../Slider/OnboardingScreen';
 import SplashScreen from '../pages/SplaceScreen/SplashScreen';
 import Signin from '../pages/Login/Signin';
+import GeneralInformation from '../pages/content/GernalInformation';
+import Profile from '../home/Profile';
 
 const StackNavigation = () => {
 
@@ -17,10 +19,12 @@ const StackNavigation = () => {
     return (
         <NavigationContainer >
             <Stack.Navigator>
+                {/* <Stack.Screen  name ='Profile' component={Profile} options={{headerShown:false}}/> */}
                  <Stack.Screen name='Splash' component={SplashScreen} options={{ headerShown: false }} />
                 <Stack.Screen name='OnboardingScreen' component={OnboardingScreen} options={{headerShown:false}}/>
                 <Stack.Screen name='Signin' component={Signin} options={{ headerShown: false }} />
                 <Stack.Screen name="OTPVerification" component={OTPVerification} options={{ headerShown: false }} />
+                <Stack.Screen name ='GenernalInformation' component={GeneralInformation} options={{headerShown:false}}/>
                  {/* <Stack.Screen name='HomeScreen' component={HomeScreen} options={{ headerShown: false }} />  */}
                 {/* <Stack.Screen name='OnboardingScreen' component={OnboardingScreen} options={{ headerShown: false }} /> */}
 
