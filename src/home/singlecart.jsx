@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, FlatList } from 'react-native';
 
-const singlecart = () => {
+const Singlecart = () => {
   const [galleryPhotos, setGalleryPhotos] = useState([]);
 
   useEffect(() => {
@@ -79,4 +79,4 @@ const singlecart = () => {
   );
 };
 
-export default singlecart;
+export default Singlecart;

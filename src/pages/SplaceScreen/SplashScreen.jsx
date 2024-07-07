@@ -1,20 +1,6 @@
-// import { View, Text } from 'react-native'
-// import React from 'react'
 
-// const SplashScreen = () => {
-//   return (
-//     <View>
-//       <Text>SplashScreen</Text>
-//     </View>
-//   )
-// }
+import { View, Text, Image } from "react-native"
 
-// export default SplashScreen
-
-
-
-import { View, Text, StyleSheet, Image } from "react-native"
-import navigation from "@react-navigation/stack"
 
 import { useEffect } from "react"
 import Signin from "../Login/Signin"

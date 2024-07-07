@@ -99,8 +99,9 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import Profile from '../../home/Profile';
 
-const CoverImage = () => {
+const CoverImage = ({navigation}) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
 
@@ -110,14 +111,18 @@ const CoverImage = () => {
   // };
 
   return (
-    <View styles={styles.container}>
-      <View style={styles.line}>
-        <TouchableOpacity style={styles.backButton}>
-          <Icon name='chevron-left' size={50} color="black" onPress={() => { }} />
+  
+
+      
+<View style={styles.container}>
+        
+        <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack(Profile)}>
+        <Icon name="arrow-back" size={30} color="#000" />
         </TouchableOpacity>
-
-
-        <Text style={styles.title}>coverImage</Text>
+          
+          <Text style={styles.headerTitle}>CoverImage </Text>
+          
       </View>
 
       <View style={styles.uploadContainer}>
@@ -167,19 +172,20 @@ const CoverImage = () => {
         </View>
       </View>
     </View>
+    
   )
 }
 
 export default CoverImage
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  line: {
-    flexDirection: 'row',
-  },
+  // container: {
+  //   flex: 1,
+  //   padding: 16,
+  // },
+  // line: {
+  //   flexDirection: 'row',
+  // },
   backButton: {
     marginBottom: 16,
   },
@@ -241,6 +247,24 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#805ad5',
   },
+  
+
+  container: {
+      flex: 1,
+      backgroundColor: '#fff',
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      //   justifyContent: 'space-between',
+      padding: 20,
+      backgroundColor: '#f8f8f8',
+       },
+       headerTitle:{
+          fontSize:20,
+          fontWeight:'bold',
+          justifyContent:'center'
+       }
 });
 
 

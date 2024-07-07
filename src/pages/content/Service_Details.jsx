@@ -1,12 +1,26 @@
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Color } from '../../assets/Colors/Color'
 import CommonTextinput from '../../component/CommonTextfield'
 import CommonDropdown from '../../component/CommonDropdown'
 import CommonButton from '../../component/CommonButton'
+import Profile from '../../home/Profile'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-const Service_Details = () => {
+const Service_Details = ({navigation}) => {
   return (
+
+    
+    <View style={styles.container}>
+        
+    <View style={styles.header}>
+    <TouchableOpacity onPress={() => navigation.goBack(Profile)}>
+    <Icon name="arrow-back" size={30} color="#000" />
+    </TouchableOpacity>
+      
+      <Text style={styles.headerTitle}>Service Details </Text>
+      
+    </View>
     <ScrollView>
 
       <View style={{ backgroundColor: "white", flex: 1 }} >
@@ -150,7 +164,29 @@ const Service_Details = () => {
 
 
     </ScrollView>
+    </View>
   )
 }
 
 export default Service_Details
+
+
+
+const styles= StyleSheet.create({
+  container: {
+      flex: 1,
+      backgroundColor: '#fff',
+    },
+    header: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      //   justifyContent: 'space-between',
+      padding: 20,
+      backgroundColor: '#f8f8f8',
+       },
+       headerTitle:{
+          fontSize:20,
+          fontWeight:'bold',
+          justifyContent:'center'
+       }
+      })

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, FlatList, TextInput, ScrollView } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faArrowLeft, faTrash, faSearch } from '@fortawesome/free-solid-svg-icons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import Notification from '../assets/Notification/Notification';
 
 const services = [
   {
@@ -108,14 +110,30 @@ const Home = () => {
     setFilteredServices(filtered);
   };
 
-  return (
-    <View style={styles.container}>
+   return (
+     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.backButton}>
-          <FontAwesomeIcon icon={faArrowLeft} size={20} color="black" />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Home</Text>
-      </View>
+         <TouchableOpacity style={styles.backButton}>
+           <FontAwesomeIcon icon={faArrowLeft} size={20} color="black" />
+         </TouchableOpacity>
+
+         <Text style={styles.headerText}>Home</Text>
+         <TouchableOpacity onPress={()=>navigation.navigate(Notification)}>
+         <Icon name="notifications" size={24} color="#000" />
+
+         </TouchableOpacity>
+       </View>
+
+{/*   
+  // <View style={styles.container}>
+        
+  // <View style={styles.header}>
+  // <Icon name="arrow-back" size={30} color="#000" />
+  
+    
+  //   <Text style={styles.headerTitle}>Home</Text>
+  //   <Icon name="notifications" size={24} color="#000" />
+  // </View> */}
       <View style={styles.searchContainer}>
         <FontAwesomeIcon icon={faSearch} size={20} color="#888" style={styles.searchIcon} />
         <TextInput
@@ -143,7 +161,7 @@ const Home = () => {
               style={styles.serviceCard}
               onPress={() => addToCart(service)}
             >
-              <Image source={service.icon} style={styles.serviceIcon} />
+              <Image source={service.icon} style={styles.serviceIcon} width='100%' height='100%'/>
               <Text style={styles.serviceTitle}>{service.title}</Text>
               <Text style={styles.serviceCategories}>{service.categories} Categories</Text>
             </TouchableOpacity>
@@ -152,6 +170,8 @@ const Home = () => {
       </ScrollView>
       <Cart cart={cart} onRemove={removeFromCart} />
     </View>
+    
+    
   );
 };
 
@@ -167,6 +187,7 @@ const styles = StyleSheet.create({
     textAlign:'center',
     padding: 20,
     // backgroundColor: '#f0f0f0',
+    justifyContent:'space-between'
   },
   backButton: {
     marginRight: 10,
@@ -229,6 +250,7 @@ const styles = StyleSheet.create({
   serviceIcon: {
     width: '100%',
     height: '100%',
+    objectFit:'cover'
   },
   serviceTitle: {
     position: 'absolute',

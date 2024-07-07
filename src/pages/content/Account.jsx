@@ -1,10 +1,24 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { Color } from '../../assets/Colors/Color'
-
-const Account = () => {
+import Profile from '../../home/Profile'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+const Account = ({navigation}) => {
     return (
+        
+        <View style={styles.container}>
+        
+        <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack(Profile)}>
+        <Icon name="arrow-back" size={30} color="#000" />
+        </TouchableOpacity>
+          
+          <Text style={styles.headerTitle}>Account </Text>
+          
+        </View>
         <View style={{ backgroundColor: "white", flex: 1 }}>
+            
+        
 
 
             <View style={{ marginHorizontal: 20 }}>
@@ -54,9 +68,29 @@ const Account = () => {
 
 
             </View>
-
+</View>
         </View>
+        
     )
 }
 
 export default Account
+
+const styles= StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+      },
+      header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        //   justifyContent: 'space-between',
+        padding: 20,
+        backgroundColor: '#f8f8f8',
+         },
+         headerTitle:{
+            fontSize:20,
+            fontWeight:'bold',
+            justifyContent:'center'
+         }
+        })

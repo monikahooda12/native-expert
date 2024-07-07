@@ -1,13 +1,14 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import CommonButton from '../../component/CommonButton'
 import CommonTextinput from '../../component/CommonTextfield'
 import CommonDropdown from '../../component/CommonDropdown'
 // import CalendarPicker from "react-native-calendar-picker";
 import { Color } from '../../assets/Colors/Color'
+import Profile from '../../home/Profile'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-
-const GeneralInformation = () => {
+const GeneralInformation = ({navigation}) => {
 
     // const [selectedStartDate, setSelectedStartDate] = useState(null);
     // const onDateChange = (date) => {
@@ -18,6 +19,17 @@ const GeneralInformation = () => {
     // const startDate = selectedStartDate ? selectedStartDate.toString() : "";
 
     return (
+        <View style={styles.container}>
+        
+        <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack(Profile)}>
+        <Icon name="arrow-back" size={30} color="#000" />
+        </TouchableOpacity>
+          
+          <Text style={styles.headerTitle}>GeneralInformation </Text>
+          
+        </View>
+  
         <ScrollView style={{ backgroundColor: "white" }} >
             <View style={{
                 flex: 1,
@@ -135,7 +147,28 @@ const GeneralInformation = () => {
 
             </View>
         </ScrollView>
+        </View>
     )
 }
 
 export default GeneralInformation 
+ const styles= StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+      },
+      header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        //   justifyContent: 'space-between',
+        padding: 20,
+        backgroundColor: '#f8f8f8',
+         },
+         headerTitle:{
+            fontSize:20,
+            fontWeight:'bold',
+            justifyContent:'center'
+         }
+
+    
+ })

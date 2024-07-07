@@ -162,7 +162,7 @@ const HandleLogin = async () => {
       },
       body: JSON.stringify({ mobile: mobileNumber, type: 'user', country_code: '91' }),
     });
-    if (response.ok) {
+    if (!response.ok) {
       Alert.alert('Success', 'OTP sent successfully');
       navigation.navigate('OTPVerification');
     } else {
@@ -173,6 +173,8 @@ const HandleLogin = async () => {
     Alert.alert('Error', 'Failed to send OTP');
   }
 };
+
+  
 
 
   return (
